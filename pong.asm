@@ -2,8 +2,17 @@
 ; Creator: xWatexx
 ; Date: April 3, 2025
 ;
-; This program is a simple Pong game written in 16-bit x86 assembly language.
+; This program is a simple Pong game written in 16-bit x86 assembly language. It is intended to function on any x86 compatible machine with VGA hardware and
+; a PS/2 keyboard. 
+; This software will not run on an operating system. It is standalone.
 ; This software is currently unlicensed.
+;
+; TODO
+; - Implement drawing of letters and numbers to the screen
+; - Add winning/losing
+; - Add a menu (maybe)
+; - Add the ability to restart the game
+;
 ORG 0
 CPU 8086
 BITS 16
@@ -33,7 +42,7 @@ BITS 16
 %define KB_STATUS 0x64
 %define KB_DATA 0x60
 
-%define KEYUP 0x80              ; NOT this bit away if to get a released scancode, or AND it with a scancode to detect if a key is up
+%define KEYUP 0x80              ; NOT this bit away to get a released scancode, or AND it with a scancode to detect if a key is up
 
 %define KEY_W 0x11
 %define KEY_S 0x1F
@@ -51,21 +60,6 @@ BITS 16
 %define BALL_HEIGHT 10
 %define BALL_STARTX 155
 %define BALL_STARTY 95
-
-; Gets a byte value from a given I/O port
-; Clobbers DX and AL
-%macro inb 1
-    mov dx, %1
-    in al, dx
-%endmacro
-
-; Sends a byte value to an I/O port
-; Clobbers DX and AL
-%macro outb 2
-    mov dx, %1
-    mov al, %2
-    out dx, al
-%endmacro
 
 
 _start:
