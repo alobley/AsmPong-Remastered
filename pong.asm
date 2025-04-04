@@ -1,3 +1,9 @@
+; Pong Game in 16 bit x86 Assembly Language
+; Creator: xWatexx
+; Date: April 3, 2025
+;
+; This program is a simple Pong game written in 16-bit x86 assembly language.
+; This software is currently unlicensed.
 ORG 0
 CPU 8086
 BITS 16
